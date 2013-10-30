@@ -13,7 +13,6 @@ H4F::Application.routes.draw do
 
   resources :rooms
     
-
   resources :hotels
 
 
