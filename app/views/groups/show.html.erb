@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @group.name %>
+</p>
+
+<p>
+  <b>Menager:</b>
+  <%= @group.menager %>
+</p>
+
+<table>
+<tr>
+<th>Imie</th>
+<th>Nazwisko</th>
+<th>Role</th>
+<th>Able to share room</th>
+<th>Mobile</th>
+<th>Email</th>
+<th>Bookings</th>
+<th></th>
+
+</tr>
+
+<% @group.people.each do |person| %>
+<tr>
+<td><%= person.imie %></td>
+<td><%= person.nazwisko %></td>
+<td><%= person.role %></td>
+<td><%= person.ableToShareRoom %></td>
+<td><%= person.mobile %></td>
+<td><%= person.email %></td>
+<td><%= person.bookings.count %></td>
+<td><%= link_to 'Show', person %>
+<%= link_to 'Edit', edit_person_path(person) %>
+<%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+<% end %>
+</table>
+
+
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %> |
+<%= link_to 'Add a person', new_person_path %> |
+<%= link_to 'New Stay', new_stay_path(:new_stays_for_group => @group.id) %>

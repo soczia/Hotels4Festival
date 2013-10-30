@@ -1,0 +1,20 @@
+<%= simple_form_for(@booking) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+
+    <%= f.select("person_id" , Person.all.collect { |person|  [ person.full_name, person.id ] }, {:include_blank => true} ) %>
+    <%= f.select("group_id" , Group.all.collect { |group| [group.name, group.id] }, {:include_blank => true} ) %>
+    <%= f.label "hotel" %>
+    <%= f.select :hotel_id , Hotel.all.map { |hotel| [hotel.name, hotel.id] } %>
+    <%= f.select("room_id" , Room.all.collect { |room| [room.number_type, room.id ] } , {:include_blank => true})%>
+    <%= f.input :dateFrom %>
+    <%= f.input :dateTo %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<h1>Listing stays</h1>
+
+<table>
+  <tr>
+    <th>Check in</th>
+    <th>Check out</th>
+    <th>Person</th>
+    <th>Group</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stays.each do |stay| %>
+  <tr>
+    <td><%= stay.check_in %></td>
+    <td><%= stay.check_out %></td>
+    <td><%= stay.person.full_name %></td>
+    <td><%= stay.group.try(:name) %></td>
+    <td><%= link_to 'Show', stay %></td>
+    <td><%= link_to 'Edit', edit_stay_path(stay) %></td>
+    <td><%= link_to 'Destroy', stay, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stay', new_stay_path %>

@@ -1,0 +1,33 @@
+<h1>Listing bookings</h1>
+
+<table>
+  <tr>
+    <th>Date from</th>
+    <th>Date to</th>
+    <th>Person</th>
+    <th>Room</th>
+    <th>Hotel</th>
+    <th>Group</th>
+    <th></th>
+    <th></th>
+    <th> </th>
+  </tr>
+
+<% @bookings.each do |booking| %>
+  <tr>
+    <td><%= booking.dateFrom %></td>
+    <td><%= booking.dateTo %></td>
+    <td><%= booking.person.try(:imie) + " " + booking.person.try(:imie) %></td>
+    <td><%= booking.room.try(:roomNumber) %></td>
+<td><%= booking.hotel ? booking.hotel.try(:name) : booking.room.hotel.try(:name) %></td>
+    <td><%= booking.group.try(:name) %></td>
+    <td><%= link_to 'Show', booking %></td>
+    <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+    <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Booking', new_booking_path %>

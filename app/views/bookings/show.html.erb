@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Datefrom:</b>
+  <%= @booking.dateFrom %>
+</p>
+
+<p>
+  <b>Dateto:</b>
+  <%= @booking.dateTo %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @booking.person.imie %>
+</p>
+
+<p>
+  <b>Room:</b>
+<%= @booking.room.try(:roomNumber) %>
+</p>
+
+<p>
+  <b>Hotel:</b>
+<%= @booking.try(:hotel) ? @booking.hotel.try(:name) : @booking.room.hotel.try(:name) %>
+</p>
+
+<p>
+  <b>Group:</b>
+<%= @booking.group.try(:name) %>
+</p>
+
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>

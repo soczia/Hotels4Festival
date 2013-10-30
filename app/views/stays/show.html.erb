@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Check in:</b>
+  <%= @stay.check_in %>
+</p>
+
+<p>
+  <b>Check out:</b>
+  <%= @stay.check_out %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @stay.person.full_name%>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @stay.group_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_stay_path(@stay) %> |
+<%= link_to 'Back', stays_path %>

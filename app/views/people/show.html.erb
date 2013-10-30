@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+<div>
+<p>
+  <b>Imie:</b>
+  <%= @person.imie %>
+</p>
+
+<p>
+  <b>Nazwisko:</b>
+  <%= @person.nazwisko %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @person.role %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @person.group_id %>
+</p>
+
+
+<p>
+  <b>Age:</b>
+  <%= @person.age %>
+</p>
+
+<p>
+  <b>Able to share room:</b>
+  <%= @person.ableToShareRoom %>
+<% if @person.ableToShareRoom==0  %>
+    <b>No</b>
+<% else %>
+    <b>Yes</b>
+</p>
+
+<% end %>
+<p>
+  <b>Mobile:</b>
+  <%= @person.mobile %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @person.email %>
+</p>
+</div>
+<div>
+<table>
+<tr>
+<th>Check in</th>
+<th>Check out</th>
+<th></th>
+
+</tr>
+
+<% @person.stays.each do |stay| %>
+<tr>
+<td><%= stay.check_in %></td>
+<td><%= stay.check_out %></td>
+<td><%= link_to 'Show', stay %>
+<%= link_to 'Edit', edit_stay_path(stay) %>
+<%= link_to 'Destroy', stay, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+<% end %>
+</table>
+</div>
+<div>
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %> |
+<%= link_to 'New Stay', new_stay_path(:new_stays_for_person => @person.id) %>
+</div>
+

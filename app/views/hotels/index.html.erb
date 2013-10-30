@@ -1,0 +1,41 @@
+<h3>Listing hotels</h3>
+<div class="span8">
+<table class="table table-condensed">
+<thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Street</th>
+    <th>City</th>
+    <th>Postcode</th>
+    <th>Geolocation</th>
+    <th>Rooms</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+ <tbody>
+<% @hotels.each do |hotel| %>
+  <tr>
+    <td><%= image_tag(hotel.picture_url, :width => 60) if hotel.picture.present? %></td>
+    <td><%= hotel.name %></td>
+    <td><%= hotel.street %></td>
+    <td><%= hotel.city %></td>
+    <td><%= hotel.postcode %></td>
+    <td><%= hotel.geolocation %></td>
+    <td><%= hotel.rooms.size %></td>
+    <td><%= hotel.free_rooms %></td>
+    <td><%= link_to 'Show', hotel %></td>
+    <td><%= link_to 'Edit', edit_hotel_path(hotel) %></td>
+    <td><%= link_to 'Destroy', hotel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New Hotel', new_hotel_path %>
+</div>
+<br />
+
+

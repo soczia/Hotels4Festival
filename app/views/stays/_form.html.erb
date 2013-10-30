@@ -1,0 +1,15 @@
+<%= simple_form_for(@stay) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :check_in %>
+    <%= f.input :check_out %>
+    <%= f.select("person_id" , Person.all.collect { |person|  [ person.imie, person.id ] }, {:include_blank => true} ) %>
+    <%= f.select("group_id" , Group.all.collect { |group| [group.name, group.id] }, {:include_blank => true} ) %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<h1>Listing groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Menager</th>
+    <th>Members</th>
+    <th>Bookings</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @groups.each do |group| %>
+  <tr>
+    <td><%= group.name %></td>
+    <td><%= group.menager %></td>
+    <td><%= group.people.count %></td>
+    <td><%= group.bookings ? group.bookings.count : group.people.bookings.count %></td>
+<% counter = 0 %>
+<%  group.people.each do |person| %>
+<%  counter = counter + person.bookings.count %>
+<% end %>
+    <td><%= counter %>
+    <td><%= link_to 'Show', group %></td>
+    <td><%= link_to 'Edit', edit_group_path(group) %></td>
+    <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Group', new_group_path %>
