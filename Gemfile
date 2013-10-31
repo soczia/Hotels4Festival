@@ -4,6 +4,7 @@ gem 'rails', '3.2.14'
 gem 'sqlite3'
 gem 'mysql2'
 gem 'carrierwave'
+gem 'event-calendar', :require => 'event_calendar'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

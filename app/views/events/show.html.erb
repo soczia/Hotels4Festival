@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+<b>Name:</b>
+<%= @event.name %>
+</p>
+
+<p>
+  <b>Start at:</b>
+  <%= @event.start_at %>
+</p>
+
+<p>
+  <b>End at:</b>
+  <%= @event.end_at %>
+</p>
+
+
+
+<% @event.event_range %>
+
+<br>
+<table class="event_table">
+    <tr>
+    <% Date::DAYNAMES.each do |day| %>
+        <th>
+        <%= day %>
+        </th>
+    <% end %>
+    </tr>
+    <tr>
+    <% (0..@event.start_at.wday-1).each do |d| %>
+        <td/>
+    <% end %>
+    <% @event.event_range.each do |day| %>
+        <td>
+         <%= link_to events_path ,:class => "button" do %>
+            <%= day %>
+            <%= day.strftime("%A") %>
+         <% end %>
+
+        </td>
+        <%  if day.wday == 6 %>
+            </tr><tr>
+        <% else %>
+
+        <% end %>
+    <% end %>
+    <% (@event.end_at.wday..5).each do |d| %>
+        <td/>
+    <% end %>
+
+    </tr>
+</table>
+
+<br/>
+
+
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+
+

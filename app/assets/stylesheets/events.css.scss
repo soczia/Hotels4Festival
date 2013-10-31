@@ -1,0 +1,15 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.event_table th {
+top: 0;
+left: 0;
+table-layout: fixed;
+padding: 2px 0;
+background: #303030;
+color: #FFF;
+font-weight: normal;
+}
+.event_table td {
+background-color: #FFF;
+color: #303030; }
