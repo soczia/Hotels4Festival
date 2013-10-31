@@ -13,39 +13,42 @@
 
 ActiveRecord::Schema.define(:version => 20120418171112) do
 
-  create_table "Booking", :force => true do |t|
-    t.datetime "dateFrom", :null => false
-    t.datetime "dateTo",   :null => false
-    t.integer  "personId"
-    t.integer  "roomId"
+  create_table "bookings", :force => true do |t|
+    t.date    "dateFrom",  :null => false
+    t.date    "dateTo",    :null => false
+    t.integer "person_id"
+    t.integer "room_id"
+    t.integer "hotel_id"
+    t.integer "group_id"
   end
 
-  add_index "booking", ["personId"], :name => "personFK"
-  add_index "booking", ["roomId"], :name => "roomFK"
+  add_index "bookings", ["person_id"], :name => "personFK"
+  add_index "bookings", ["room_id"], :name => "roomFK"
 
-  create_table "Hotels", :force => true do |t|
+  create_table "groups", :force => true do |t|
+    t.string  "name",    :limit => 45
+    t.integer "menager"
+  end
+
+  create_table "hotels", :force => true do |t|
     t.string "name",        :limit => 45
     t.string "street",      :limit => 45
     t.string "city",        :limit => 45
-    t.string "postCode",    :limit => 45
-    t.string "geoLocation", :limit => 45
+    t.string "postcode",    :limit => 45
+    t.string "geolocation", :limit => 45
+    t.string "picture",     :limit => 111
   end
 
-  create_table "Person", :force => true do |t|
-    t.string "imie",     :limit => 45
-    t.string "nazwisko", :limit => 45
-    t.string "role",     :limit => 45
-    t.string "age",      :limit => 45
+  create_table "people", :force => true do |t|
+    t.string  "imie",            :limit => 45
+    t.string  "nazwisko",        :limit => 45
+    t.string  "role",            :limit => 45
+    t.string  "age",             :limit => 45
+    t.integer "group_id"
+    t.integer "ableToShareRoom",               :default => 0
+    t.string  "mobile",          :limit => 45
+    t.string  "email",           :limit => 45
   end
-
-  create_table "Rooms", :force => true do |t|
-    t.string  "type",       :limit => 45
-    t.string  "beds",       :limit => 45
-    t.integer "hotelId"
-    t.string  "roomNumber", :limit => 45
-  end
-
-  add_index "rooms", ["hotelId"], :name => "hotelFK"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -57,6 +60,22 @@ ActiveRecord::Schema.define(:version => 20120418171112) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "rooms", :force => true do |t|
+    t.string  "roomtype",   :limit => 45
+    t.string  "beds",       :limit => 45
+    t.integer "hotel_id"
+    t.string  "roomNumber", :limit => 45
+  end
+
+  add_index "rooms", ["hotel_id"], :name => "hotelFK"
+
+  create_table "stays", :force => true do |t|
+    t.integer "person_id"
+    t.date    "check_in",  :null => false
+    t.date    "check_out", :null => false
+    t.integer "group_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
