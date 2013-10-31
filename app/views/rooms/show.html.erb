@@ -22,6 +22,57 @@
 
 
 
+
+<table class="event_table">
+<tr>
+<% Date::DAYNAMES.each do |day| %>
+<th>
+<%= day %>
+</th>
+<% end %>
+</tr>
+<tr>
+<% (0..@room.event.start_at.wday-1).each do |d| %>
+<td/>
+<% end %>
+<% @room.event.event_range.each do |day| %>
+<td>
+<%= link_to events_path ,:class => "button" do %>
+    <div class="div_date">
+        <%= day %>
+    </div>
+<% end %>
+    <% if @room.booked_days.include?(day) %>
+        <%= link_to "/bookings/"+@room.bookings_link[day].id.to_s ,:class => "button" do %>
+        <div  class="room_not_free">
+            <p>  Occupied </p>
+        </div>
+        <% end %>
+    <% else %>
+        <div  class="room_free">
+            <p> FREE </p>
+        </div>
+    <% end %>
+
+
+</td>
+<%  if day.wday == 6 %>
+</tr><tr>
+<% else %>
+
+<% end %>
+<% end %>
+<% (@room.event.end_at.wday..5).each do |d| %>
+<td/>
+<% end %>
+
+</tr>
+</table>
+
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
+<br>
+<%= @room.booked_days %>
+
+<%= @room.booked_days_test.count %>
 

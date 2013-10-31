@@ -1,3 +1,34 @@
 // Place all the styles related to the rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.div_date {
+position: relative;
+
+background: #303030;
+color: #FFF;
+}
+
+.room_free {
+background: #8ACF80 url("img/GREEN.png");
+color: #FFF;
+height: 76px;
+}
+
+.room_not_free  {
+background: #300030 url("img/RED.png");;
+color: #FFF;
+height: 76px;
+}
+
+.room_not_free  p{
+align-items: center;
+position: relative;
+top: 20px;
+}
+
+.room_free  p{
+align-items: center;
+position: relative;
+top: 20px;
+
+}

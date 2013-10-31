@@ -17,7 +17,7 @@
   <tr>
     <td><%= booking.dateFrom %></td>
     <td><%= booking.dateTo %></td>
-    <td><%= booking.person.try(:imie) + " " + booking.person.try(:imie) %></td>
+    <td><%= booking.person.try(:full_name) %></td>
     <td><%= booking.room.try(:roomNumber) %></td>
 <td><%= booking.hotel ? booking.hotel.try(:name) : booking.room.hotel.try(:name) %></td>
     <td><%= booking.group.try(:name) %></td>
