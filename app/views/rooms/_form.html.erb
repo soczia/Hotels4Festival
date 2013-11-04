@@ -5,6 +5,7 @@
     <%= f.input :beds %>
     <%= f.input :roomtype %>
     <%= f.input :roomNumber %>
+    <%= f.input :price %>
 
     <%= f.select :hotel_id , Hotel.all.map { |hotel| [hotel.name, hotel.id] } %>
 </div>

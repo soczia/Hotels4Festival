@@ -1,54 +1,102 @@
 <p id="notice"><%= notice %></p>
-<div>
+<div class="row">
+<div class="span4">
 <%= image_tag(@hotel.picture_url, :width => 600) if @hotel.picture.present? %>
 </div>
-<p>
-  <b>Name:</b>
-  <%= @hotel.name %>
-</p>
+<div class="span4">
+<address>
+<strong><%= @hotel.name %></strong><br>
+<%= @hotel.street %><br>
+<%= @hotel.city %>, <%= @hotel.postcode %><br>
+<%= @hotel.geolocation %><br>
+<%= @hotel.phone %><br>
+<%= @hotel.email %><br>
+</address>
+</div>
 
-<p>
-  <b>Street:</b>
-  <%= @hotel.street %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @hotel.city %>
-</p>
-
-<p>
-  <b>Postcode:</b>
-  <%= @hotel.postcode %>
-</p>
-
-<p>
-  <b>Geolocation:</b>
-  <%= @hotel.geolocation %>
-</p>
-
-<table>
+<div class="span8">
+<table class="table table-bordered">
 <tr>
-<th>Beds</th>
-<th>Room type</th>
-<th>Room number</th>
-<th></th>
-<th></th>
-<th></th>
+<% Date::DAYNAMES.each do |day| %>
+<th class="label-inverse small">
+<%= day %>
+</th>
+<% end %>
 </tr>
+<tr>
+<% (0..@hotel.event.start_at.wday-1).each do |d| %>
+<td/>
+<% end %>
+<% @hotel.event.event_range.each do |day| %>
+<td>
+<%= link_to events_path ,:class => "button" do %>
+<div class="label label-inverse">
+<%= day %>
+</div>
+<% end %>
 
+<div  class="btn btn-small btn-warning">
+<p> Total:
+<%=  @hotel.booked_days[day]['Total'] %>
+</p>
+</div>
+<% if @hotel.booked_days[day]['Free'] > 0 %>
+<div  class="btn btn-small btn-success">
+<p> FREE:
+<%= @hotel.booked_days[day]['Free'] %>
+</p>
+</div>
+<% else %>
+<div  class="btn btn-small btn-danger">
+<p> FREE:
+<%= @hotel.booked_days[day]['Free'] %>
+</p>
+</div>
+<%end%>
+
+</td>
+<%  if day.wday == 6 %>
+</tr><tr>
+<% else %>
+
+<% end %>
+<% end %>
+<% (@hotel.event.end_at.wday..5).each do |d| %>
+<td/>
+<% end %>
+
+</tr>
+</table>
+</div>
+
+<div class="span8">
+<table class="table table-striped">
+<thead>
+<tr>
+<th class="label-inverse small">Beds</th>
+<th class="label-inverse">Room type</th>
+<th class="label-inverse">Room number</th>
+<th class="label-inverse">Price</th>
+<th class="label-inverse"></th>
+<th class="label-inverse"></th>
+<th class="label-inverse"></th>
+</tr>
+</thead>
 <% @hotel.rooms.each do |room| %>
 <tr>
 <td><%= room.beds %></td>
 <td><%= room.roomtype %></td>
 <td><%= room.roomNumber %></td>
+<td><%= room.price %></td>
 <td><%= link_to 'Show', room %></td>
 <td><%= link_to 'Edit', edit_room_path(room) %></td>
 <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
 <% end %>
 </table>
+</div>
 
+</div>
 <%= link_to 'Edit', edit_hotel_path(@hotel) %> |
 <%= link_to 'Back', hotels_path %> |
 <%= link_to 'Add a Room', new_room_path %>

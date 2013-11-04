@@ -12,7 +12,7 @@
 
 <p>
   <b>Person:</b>
-  <%= @booking.person.imie %>
+<%= @booking.person.try(:full_name) %>
 </p>
 
 <p>

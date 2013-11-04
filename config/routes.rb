@@ -27,4 +27,6 @@ H4F::Application.routes.draw do
   root :to => "home#index"
   devise_for :users
   resources :users
+  
+  get '*path', to: 'home#index'
 end

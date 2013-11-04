@@ -6,6 +6,7 @@
     <th>Beds</th>
     <th>Room type</th>
     <th>Room number</th>
+    <th>Price</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,7 +17,8 @@
     <td><%= room.hotel.name %></td>
     <td><%= room.beds %></td>
     <td><%= room.roomtype %></td>
-    <td><%= room.roomNumber %></td>    
+    <td><%= room.roomNumber %></td>
+    <td><%= room.price %></td>
     <td><%= link_to 'Show', room %></td>
     <td><%= link_to 'Edit', edit_room_path(room) %></td>
     <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>

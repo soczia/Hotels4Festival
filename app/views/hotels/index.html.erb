@@ -25,7 +25,16 @@
     <td><%= hotel.postcode %></td>
     <td><%= hotel.geolocation %></td>
     <td><%= hotel.rooms.size %></td>
-    <td><%= hotel.free_rooms %></td>
+    <td><%= hotel.bookings.count %></td>
+    <td>    <div class="btn-group">
+        <button class="btn btn-primary">Action</button>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><%= link_to 'Show', hotel %></li>
+                    <li><%= link_to 'Destroy', hotel, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                    <li><%= link_to 'Edit', edit_hotel_path(hotel) %>/li>
+                </ul>
+        </div></td>
     <td><%= link_to 'Show', hotel %></td>
     <td><%= link_to 'Edit', edit_hotel_path(hotel) %></td>
     <td><%= link_to 'Destroy', hotel, method: :delete, data: { confirm: 'Are you sure?' } %></td>

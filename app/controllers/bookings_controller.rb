@@ -3,13 +3,32 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
+      # if do wyjebania - proba zrobienia listy dla hoteli ze wszystkich rezerwacji
+    if params[:bookings_for_hotel]
+        @bookings = Booking.all.find(:hotel_id == params[:bookings_for_hotel])
+        @bookings = Booking.all.find(:conditions => ["hotel_id = ? ", params[:bookings_for_hotel]])
+    else
     @bookings = Booking.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bookings }
     end
   end
+  
+  # GET /bookings/1
+  # GET /bookings/1.json
+  # if do wyjebania - proba zrobienia listy dla hoteli ze wszystkich rezerwacji 
+  def list
+      @bookings = Booking.find(:hotel_id == params[:id])
+      
+      respond_to do |format|
+          format.html # show.html.erb
+          format.json { render json: @booking }
+      end
+  end
+  
 
   # GET /bookings/1
   # GET /bookings/1.json
