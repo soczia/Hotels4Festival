@@ -17,8 +17,16 @@ H4F::Application.routes.draw do
 
 
   resources :rooms
+  
+  resources :rooms do
+      resources :bookings
+  end
     
   resources :hotels
+  
+  resources :hotels do
+      resources :bookings
+  end
 
 
   authenticated :user do

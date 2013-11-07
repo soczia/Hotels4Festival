@@ -4,11 +4,15 @@ class BookingsController < ApplicationController
   # GET /bookings.json
   def index
       # if do wyjebania - proba zrobienia listy dla hoteli ze wszystkich rezerwacji
-    if params[:bookings_for_hotel]
+    if params[:hotel_id]
         @bookings = Booking.all.find(:hotel_id == params[:bookings_for_hotel])
         @bookings = Booking.all.find(:conditions => ["hotel_id = ? ", params[:bookings_for_hotel]])
-    else
-    @bookings = Booking.all
+        @bookings = Hotel.find(params[:hotel_id]).bookings
+        else if params[:room_id]
+            @bookings = Room.find(params[:room_id]).bookings
+                else
+            @bookings = Booking.all
+        end
     end
 
     respond_to do |format|
@@ -21,8 +25,10 @@ class BookingsController < ApplicationController
   # GET /bookings/1.json
   # if do wyjebania - proba zrobienia listy dla hoteli ze wszystkich rezerwacji 
   def list
-      @bookings = Booking.find(:hotel_id == params[:id])
-      
+      @bookings = Booking.all.find(:hotel_id == params[:bookings_for_hotel])
+      @bookings = Booking.all.find(:conditions => ["hotel_id = ? ", params[:bookings_for_hotel]])
+      @bookings = Booking.find_by_hotel_id_and_bookings_for_hotel(hotel_id, params[:bookings_for_hotel])
+
       respond_to do |format|
           format.html # show.html.erb
           format.json { render json: @booking }
