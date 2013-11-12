@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '3.2.14'
-gem 'sqlite3'
+gem 'sqlite3', :group => [:development, :test]
+group :production do
+  gem 'thin'
+  gem 'pg'
+end
 gem 'mysql2'
 gem 'carrierwave'
 gem 'event-calendar', :require => 'event_calendar'
