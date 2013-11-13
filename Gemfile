@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap-datetimepicker-rails'
 gem 'cancan'
+gem ‚therubyracer’
 gem 'devise'
 gem 'figaro'
 gem 'rolify'
